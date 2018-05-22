@@ -6,15 +6,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Playground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="terminal.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="tray.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/terminal.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/tray.css" />
 </head>
 
 <body>
   <section class="tray">
     <div id="terminal-icon" class="tray-icon active">
       <span class="terminal-icon"></span>
+      <div class="label">Terminal</div>
+    </div>
+    <div id="github-icon" class="tray-icon">
+      <span class="github-icon"></span>
+      <div class="label">GitHub</div>
     </div>
   </section>
   <main>
@@ -32,8 +37,9 @@
       </div>
     </div>
   </main>
-  <script src="main.js"></script>
-  <script src="terminal.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/github.js"></script>
 </body>
 
 </html>
