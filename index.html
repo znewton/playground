@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="terminal.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="tray.css" />
+</head>
+
+<body>
+  <section class="tray">
+    <div id="terminal-icon" class="tray-icon active">
+      <span class="terminal-icon"></span>
+    </div>
+  </section>
+  <main>
+    <div id="Test"></div>
+    <div class="terminal" id="terminal">
+      <div class="terminal-header">
+        <div id="close" class="window-action"></div>
+        <div id="minimize" class="window-action"></div>
+        <div id="expand" class="window-action"></div>
+      </div>
+      <div class="terminal-body">
+        <div id="terminal-output"></div>
+        <div id="terminal-input" contenteditable="true"></div>
+        <div id="cursor"></div>
+      </div>
+    </div>
+  </main>
+  <script src="main.js"></script>
+  <script src="terminal.js"></script>
+</body>
+
+</html>

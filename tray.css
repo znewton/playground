@@ -1,0 +1,56 @@
+.tray {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 5rem;
+  align-items: center;
+  justify-content: flex-start;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 5rem;
+  box-shadow: 10px 0 25px rgba(50, 50, 93, 0.07), 3px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.tray-icon {
+  height: 3rem;
+  width: 100%;
+  flex-basis: 3rem;
+  margin: 1rem 0;
+  padding-right: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tray-icon.active::after {
+  position: absolute;
+  right: 0.3rem;
+  content: "";
+  display: block;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: #62b5e8;
+  border-radius: 100%;
+}
+
+.tray-icon > span {
+  display: inline-block;
+  box-shadow: 0 5px 15px rgba(50, 50, 93, 0.1), 0 2px 5px rgba(0, 0, 0, 0.07);
+  transition: all 150ms ease;
+}
+
+.tray-icon:hover {
+  cursor: pointer;
+}
+
+.tray-icon:hover > span {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(50, 50, 93, 0.12), 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.terminal-icon {
+  background: #334;
+  width: 3rem;
+  height: 2.5rem;
+  border-radius: 3px;
+}
