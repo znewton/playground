@@ -6,7 +6,7 @@ const cursor = document.getElementById("cursor");
 const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const test = document.getElementById("Test");
 test.innerText = alphabet;
-var charWidth = (test.clientWidth + 1) / alphabet.length;
+const charWidth = (test.clientWidth + 1) / alphabet.length + 0.25;
 
 function handleInput(input) {
   const output = eval(input);

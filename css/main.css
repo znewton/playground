@@ -21,6 +21,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   height: 100vh;
 }
 
@@ -30,4 +31,56 @@ main {
   height: auto;
   width: auto;
   white-space: nowrap; /* Thanks to Herb Caudill comment */
+}
+.window.active {
+  display: flex;
+}
+.window {
+  display: none;
+  width: 40rem;
+  height: 30rem;
+  margin: 1rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  flex-direction: column;
+}
+.window-header {
+  height: 3rem;
+  background: #eaeaef;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+.window-header.dark {
+  background: #3e3e4e;
+}
+.window-action {
+  border-radius: 100%;
+  border: 1px solid #cfcfcf;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: 0.7rem;
+}
+.dark .window-action {
+  border: none;
+}
+.window-action.close {
+  background: #e66;
+}
+.window-action.minimize {
+  background: #fe6;
+}
+.window-action.expand {
+  background: #6e6;
+}
+.window-body {
+  padding: 0.5rem;
+  background: #fefefe;
+  color: #343445;
+  flex-grow: 1;
+}
+.window-body.dark {
+  color: #efefef;
+  background: #343445;
 }

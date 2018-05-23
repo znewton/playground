@@ -13,28 +13,40 @@
 </head>
 
 <body>
-  <section class="tray">
-    <div id="terminal-icon" class="tray-icon active">
+  <section id="tray">
+    <a id="terminal-icon" class="tray-icon" href="#terminal">
       <span class="terminal-icon"></span>
       <div class="label">Terminal</div>
-    </div>
-    <div id="github-icon" class="tray-icon">
+    </a>
+    <a id="github-icon" class="tray-icon" href="#github">
       <span class="github-icon"></span>
       <div class="label">GitHub</div>
-    </div>
+    </a>
   </section>
   <main>
     <div id="Test"></div>
-    <div class="terminal" id="terminal">
-      <div class="terminal-header">
-        <div id="close" class="window-action"></div>
-        <div id="minimize" class="window-action"></div>
-        <div id="expand" class="window-action"></div>
+    <div class="terminal window" id="terminal">
+      <div class="window-header">
+        <div class="window-action close"></div>
+        <div class="window-action minimize"></div>
+        <div class="window-action expand"></div>
       </div>
-      <div class="terminal-body">
+      <div class="window-body">
         <div id="terminal-output"></div>
         <div id="terminal-input" contenteditable="true"></div>
         <div id="cursor"></div>
+      </div>
+    </div>
+    <div class="github-dashboard window" id="github">
+      <div class="window-header">
+        <div class="window-action close"></div>
+        <div class="window-action minimize"></div>
+        <div class="window-action expand"></div>
+      </div>
+      <div class="pr-list">
+        <div id="mergeable-prs"></div>
+        <div id="not-mergeable-prs"></div>
+        <div class="pr-action-bar"></div>
       </div>
     </div>
   </main>

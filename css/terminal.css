@@ -1,45 +1,13 @@
 .terminal {
   font-family: "Courier New", Courier, monospace;
   line-height: 1.2rem;
-  width: 40rem;
-  height: 30rem;
-  background: #343445;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
-  display: flex;
-  flex-direction: column;
 }
 
 .terminal > * {
   width: 100%;
 }
 
-.terminal-header {
-  height: 3rem;
-  background: #3e3e4e;
-  display: flex;
-  align-items: center;
-  padding: 0 1rem;
-}
-
-.window-action {
-  border-radius: 100%;
-  width: 0.75rem;
-  height: 0.75rem;
-  margin-right: 0.7rem;
-}
-
-#close {
-  background: #e66;
-}
-
-#minimize {
-  background: #fe6;
-}
-
-#expand {
-  background: #6e6;
+.terminal .window-header {
 }
 
 #terminal-output {
@@ -57,11 +25,6 @@
   color: #aeaeae;
   left: 0.1rem;
   content: "-  ";
-}
-
-.terminal-body {
-  padding: 0.5rem;
-  color: #efefef;
 }
 
 #terminal-input {

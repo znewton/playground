@@ -109,18 +109,19 @@ function checkMergeability(pr) {
   let mergeable = false;
   let approvals = 0;
   for (const review of reviews) {
-    console.log(pr.title + " (review):" + review.state);
     if (review.state === "APPROVED") {
       approvals++;
     } else if (review.state !== "PENDING" && review.state !== "COMMENTED") {
       mergeable = false;
+      pr.approved = false;
+      break;
     }
   }
   mergeable = approvals >= 1;
   for (const context of commits[0]) {
-    console.log(pr.title + " (commit):" + context.state);
     if (context.state !== "SUCCESS") {
       mergeable = false;
+      pr.passing = false;
       break;
     }
   }
@@ -128,8 +129,13 @@ function checkMergeability(pr) {
   return pr;
 }
 
+class PullRequest extends HTMLElement {
+  constructor(pr) {}
+}
+
+function buildPRDOM(pull_requests = []) {}
+
 getPullRequestsGraphQL().then(pull_requests => {
-  console.log(pull_requests);
   pull_requests = pull_requests.map(pr => checkMergeability(pr));
-  console.log(pull_requests);
+  buildPRDOM(pull_requests);
 });
