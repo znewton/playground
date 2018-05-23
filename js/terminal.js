@@ -8,6 +8,11 @@ const test = document.getElementById("Test");
 test.innerText = alphabet;
 var charWidth = (test.clientWidth + 1) / alphabet.length;
 
+function handleInput(input) {
+  const output = eval(input);
+  return `${output}`;
+}
+
 terminal.addEventListener("click", () => {
   setTimeout(() => {
     input.focus();
@@ -22,13 +27,15 @@ input.addEventListener("keydown", e => {
     let outputText;
     let outputElement = document.createElement("div");
     try {
-      outputText = `${eval(inputText)}`;
+      outputText = handleInput(inputText);
     } catch (e) {
       outputText = e;
       outputElement.className = "error";
     }
     outputElement.innerText = outputText;
-    output.appendChild(outputElement);
+    if (outputText) {
+      output.appendChild(outputElement);
+    }
     input.innerHTML = "";
     e.preventDefault();
     realignCursor();
