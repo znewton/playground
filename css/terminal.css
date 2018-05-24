@@ -3,13 +3,6 @@
   line-height: 1.2rem;
 }
 
-.terminal > * {
-  width: 100%;
-}
-
-.terminal .window-header {
-}
-
 #terminal-output {
   max-height: calc(100% - 1rem);
 }
@@ -25,6 +18,12 @@
   color: #aeaeae;
   left: 0.1rem;
   content: "-  ";
+}
+#terminal-output > .input-str {
+  color: #aeaeae;
+}
+#terminal-output > .input-str::before {
+  content: ">  ";
 }
 
 #terminal-input {

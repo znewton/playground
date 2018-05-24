@@ -1,2 +1,84 @@
-.github {
+.github-dashboard .window-body {
+  display: flex;
+  flex-direction: column;
+}
+.github-dashboard {
+  height: 60rem;
+}
+
+.pr-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.loader {
+  display: flex;
+  flex-grow: 0.9;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader span {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid #efefef;
+  border-top-color: #cecece;
+  border-radius: 100%;
+  animation: spin 750ms linear 0s infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pull-request {
+  height: 5rem;
+  border-bottom: 1px solid #efefef;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: inherit;
+  text-decoration: none;
+}
+.pull-request:hover {
+  background-color: #eff8fe;
+}
+.pull-request:hover::after {
+  content: ">";
+  color: #dedede;
+  position: absolute;
+  right: 2rem;
+  transform: scaleX(0.5) scale(1.5);
+}
+.title-block {
+  font-weight: 600;
+  padding: 0.5rem 0;
+}
+.label-block {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.6rem;
+  margin: 0 0.3rem;
+  background-color: #dedede;
+  border-radius: 0.25rem;
+}
+.tag.success {
+  background-color: #cefece;
+}
+.tag.error {
+  background-color: #fecece;
 }

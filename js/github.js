@@ -108,9 +108,11 @@ function checkMergeability(pr) {
   const reviews = pr.reviews.edges.map(edge => edge.node);
   let mergeable = false;
   let approvals = 0;
+  pr.passing = true;
   for (const review of reviews) {
     if (review.state === "APPROVED") {
       approvals++;
+      pr.approved = true;
     } else if (review.state !== "PENDING" && review.state !== "COMMENTED") {
       mergeable = false;
       pr.approved = false;
@@ -129,13 +131,83 @@ function checkMergeability(pr) {
   return pr;
 }
 
-class PullRequest extends HTMLElement {
-  constructor(pr) {}
+class LoadingSpinnerElement {
+  render() {
+    const element = document.createElement("div");
+    element.className = "loader";
+    element.appendChild(document.createElement("span"));
+    return element;
+  }
 }
 
-function buildPRDOM(pull_requests = []) {}
+class PullRequestElement {
+  constructor(pr) {
+    this.pr = pr;
+    console.log(pr);
+  }
+  render() {
+    const element = document.createElement("a");
+    element.href = this.pr.url;
+    element.target = "__blank";
+    element.className = "pull-request";
+    const titleBlock = document.createElement("div");
+    titleBlock.className = "title-block";
+    titleBlock.innerText = this.pr.title;
+    const labelBlock = document.createElement("div");
+    labelBlock.className = "label-block";
+    let mergeableTag = this.getMergableTag();
+    labelBlock.appendChild(this.getApprovedTag());
+    labelBlock.appendChild(this.getPassingTag());
+    if (mergeableTag) labelBlock.appendChild(mergeableTag);
+    element.appendChild(titleBlock);
+    element.appendChild(labelBlock);
+    return element;
+  }
+  getMergableTag() {
+    if (!this.pr.mergeable) return null;
+    const element = document.createElement("span");
+    element.classList.add("tag", "success");
+    element.innerText = "Mergeable";
+    return element;
+  }
+  getPassingTag() {
+    const element = document.createElement("span");
+    element.classList.add("tag", this.pr.passing ? "success" : "error");
+    element.innerText = "Passing";
+    return element;
+  }
+  getApprovedTag() {
+    const element = document.createElement("span");
+    element.classList.add("tag", this.pr.approved ? "success" : "error");
+    element.innerText = "Approved";
+    return element;
+  }
+}
 
+const prList = document
+  .getElementById("github")
+  .getElementsByClassName("pr-list")[0];
+
+function buildPRDOM(pull_requests = []) {
+  prList.innerHTML = null;
+
+  for (const pr of pull_requests) {
+    prList.appendChild(new PullRequestElement(pr).render());
+  }
+}
+
+prList.innerHTML = null;
+prList.appendChild(new LoadingSpinnerElement().render());
 getPullRequestsGraphQL().then(pull_requests => {
   pull_requests = pull_requests.map(pr => checkMergeability(pr));
+  pull_requests.sort((a, b) => {
+    if (a.mergeable && !b.mergeable) {
+      return -1;
+    }
+    if (b.mergeable && !a.mergeable) {
+      return 1;
+    }
+    return 0;
+  });
   buildPRDOM(pull_requests);
 });

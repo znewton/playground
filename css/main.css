@@ -52,18 +52,12 @@ main {
   align-items: center;
   padding: 0 1rem;
 }
-.window-header.dark {
-  background: #3e3e4e;
-}
 .window-action {
   border-radius: 100%;
   border: 1px solid #cfcfcf;
   width: 0.75rem;
   height: 0.75rem;
   margin-right: 0.7rem;
-}
-.dark .window-action {
-  border: none;
 }
 .window-action.close {
   background: #e66;
@@ -80,7 +74,14 @@ main {
   color: #343445;
   flex-grow: 1;
 }
-.window-body.dark {
+
+.dark .window-action {
+  border: none;
+}
+.dark .window-header {
+  background: #3e3e4e;
+}
+.dark .window-body {
   color: #efefef;
   background: #343445;
 }

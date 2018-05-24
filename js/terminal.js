@@ -25,6 +25,8 @@ input.addEventListener("keydown", e => {
   if (e.keyCode === 13) {
     let inputText = input.innerText;
     let outputText;
+    let inputElement = document.createElement("div");
+    inputElement.className = "input-str";
     let outputElement = document.createElement("div");
     try {
       outputText = handleInput(inputText);
@@ -33,6 +35,8 @@ input.addEventListener("keydown", e => {
       outputElement.className = "error";
     }
     outputElement.innerText = outputText;
+    inputElement.innerText = inputText;
+    output.appendChild(inputElement);
     if (outputText) {
       output.appendChild(outputElement);
     }

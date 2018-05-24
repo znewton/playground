@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="css/terminal.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="css/tray.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/github.css" />
   <script src="config.js"></script>
 </head>
 
@@ -25,7 +26,7 @@
   </section>
   <main>
     <div id="Test"></div>
-    <div class="terminal window" id="terminal">
+    <div class="terminal window dark" id="terminal">
       <div class="window-header">
         <div class="window-action close"></div>
         <div class="window-action minimize"></div>
@@ -43,10 +44,12 @@
         <div class="window-action minimize"></div>
         <div class="window-action expand"></div>
       </div>
-      <div class="pr-list">
-        <div id="mergeable-prs"></div>
-        <div id="not-mergeable-prs"></div>
-        <div class="pr-action-bar"></div>
+      <div class="window-body">
+        <div class="pr-list">
+          <div id="mergeable-prs"></div>
+          <div id="not-mergeable-prs"></div>
+          <div class="pr-action-bar"></div>
+        </div>
       </div>
     </div>
   </main>
