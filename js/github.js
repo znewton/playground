@@ -148,7 +148,7 @@ class PullRequestElement {
   render() {
     const element = document.createElement("a");
     element.href = this.pr.url;
-    element.target = "__blank";
+    element.target = "_blank";
     element.className = "pull-request";
     const titleBlock = document.createElement("div");
     titleBlock.className = "title-block";
@@ -195,7 +195,7 @@ function buildPRDOM(pull_requests = []) {
     prList.appendChild(new PullRequestElement(pr).render());
   }
 }
-
+let mergeAll = () => {};
 prList.innerHTML = null;
 prList.appendChild(new LoadingSpinnerElement().render());
 getPullRequestsGraphQL().then(pull_requests => {
@@ -210,4 +210,11 @@ getPullRequestsGraphQL().then(pull_requests => {
     return 0;
   });
   buildPRDOM(pull_requests);
+  mergeAll = async () => {
+    for (const pull_request of pull_requests) {
+      if (!pull_request.mergeable) continue;
+      const response = await ajax("post", `${pull_request.url}/merge`);
+      console.log(response);
+    }
+  };
 });

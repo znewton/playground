@@ -82,3 +82,25 @@
 .tag.error {
   background-color: #fecece;
 }
+
+.pr-action-bar {
+  min-height: 3rem;
+  text-align: right;
+}
+
+.pr-action-bar button {
+  font-size: inherit;
+  color: inherit;
+  background: #7aea9a;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.6rem 0.95rem;
+  box-shadow: 0 6px 14px rgba(50, 50, 93, 0.1), 0 2px 6px rgba(0, 0, 0, 0.07);
+  transition: all 150ms ease;
+}
+.pr-action-bar button:hover {
+  background: #82faa2;
+  box-shadow: 0 9px 21px rgba(50, 50, 93, 0.1), 0 3px 9px rgba(0, 0, 0, 0.07);
+  transform: translateY(-2px);
+  cursor: pointer;
+}
