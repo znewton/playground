@@ -68,6 +68,31 @@
   display: flex;
   flex-direction: row;
 }
+.pull-request::before {
+  content: none;
+  position: absolute;
+  right: 3rem;
+}
+.pull-request.merging::before {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid #efefef;
+  border-top-color: #cecece;
+  border-radius: 100%;
+  animation: spin 750ms linear 0s infinite;
+}
+.pull-request.merge-success::before {
+  content: "Merged!";
+  font-weight: 600;
+  color: #4ee97a;
+}
+.pull-request.merge-fail::before {
+  content: "Merge Failed";
+  font-weight: 600;
+  color: #f14545;
+}
 
 .tag {
   font-size: 0.8rem;

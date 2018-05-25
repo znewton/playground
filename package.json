@@ -1,0 +1,17 @@
+{
+  "name": "playground",
+  "version": "0.0.1",
+  "description": "A place to play with web dev",
+  "main": "server.js",
+  "repository": "git@github.com:znewton/playground.git",
+  "author": "Zach Newton <znewton@zendesk.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "express": "^4.16.3",
+    "opn": "^5.3.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
