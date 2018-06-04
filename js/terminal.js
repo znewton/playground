@@ -19,6 +19,16 @@ terminal.addEventListener("click", () => {
   }, 0);
 });
 
+var t = "";
+function gText(e) {
+  t = document.all
+    ? document.selection.createRange().text
+    : document.getSelection();
+  if (t) document.execCommand("copy");
+}
+
+terminal.addEventListener("mouseup", gText, true);
+
 let adjustment = 0;
 
 input.addEventListener("keydown", e => {

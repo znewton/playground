@@ -70,6 +70,9 @@ async function getPullRequestsGraphQL() {
                   node {
                     body
                     state
+                    author {
+                      login
+                    }
                   }
                 }
               }
@@ -119,6 +122,16 @@ function checkMergeability(pr) {
   let mergeable = false;
   let approvals = 0;
   pr.passing = true;
+  for (let i = 0; i < reviews.length; i++) {
+    let authorName = reviews[i].author.login;
+    for (let j = i + 1; j < reviews.length; i++) {
+      if (reviews[j].author.login === authorName) {
+        reviews.splice(i, 1);
+        i--;
+        break;
+      }
+    }
+  }
   for (const review of reviews) {
     if (review.state === "APPROVED") {
       approvals++;
@@ -239,10 +252,11 @@ getPullRequestsGraphQL().then(pull_requests => {
         })
       );
       console.log(response);
+      prElement.classList.remove("merging");
       if (response.merged === true) {
         prElement.classList.add("merge-success");
         setTimeout(() => {
-          document.removeChild(prElement);
+          prElement.remove();
           pull_request.merged = true;
         }, 3000);
       } else {
@@ -252,7 +266,7 @@ getPullRequestsGraphQL().then(pull_requests => {
         setTimeout(() => {
           resolve();
         }, 5000);
-      })();
+      });
     }
   };
   document.getElementById("merge-all").addEventListener("click", () => {
