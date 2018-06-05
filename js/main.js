@@ -12,6 +12,7 @@ function updateView(view) {
     window.classList.remove("active");
   }
   activeElement.classList.add("active");
+  document.dispatchEvent(new CustomEvent("viewSwitch", { detail: { view } }));
 }
 
 let activeView = window.location.hash.replace("#", "") || "terminal";

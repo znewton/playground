@@ -75,4 +75,6 @@ function realignCursor() {
   cursor.style.top = `${input.offsetTop}px`;
 }
 
-realignCursor();
+document.addEventListener("viewSwitch", e => {
+  if (e.detail.view === "terminal") realignCursor();
+});

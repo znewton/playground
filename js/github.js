@@ -124,7 +124,7 @@ function checkMergeability(pr) {
   pr.passing = true;
   for (let i = 0; i < reviews.length; i++) {
     let authorName = reviews[i].author.login;
-    for (let j = i + 1; j < reviews.length; i++) {
+    for (let j = i + 1; j < reviews.length; j++) {
       if (reviews[j].author.login === authorName) {
         reviews.splice(i, 1);
         i--;
@@ -222,54 +222,60 @@ function buildPRDOM(pull_requests = []) {
 let mergeAll = () => {};
 prList.innerHTML = null;
 prList.appendChild(new LoadingSpinnerElement().render());
-getPullRequestsGraphQL().then(pull_requests => {
-  pull_requests = pull_requests.map(pr => checkMergeability(pr));
-  pull_requests.sort((a, b) => {
-    if (a.mergeable && !b.mergeable) {
-      return -1;
-    }
-    if (b.mergeable && !a.mergeable) {
-      return 1;
-    }
-    return 0;
-  });
-  buildPRDOM(pull_requests);
-  mergeAll = async () => {
-    for (const pull_request of pull_requests) {
-      if (!pull_request.mergeable || pull_request.merged === true) continue;
-      const prElement = document.getElementById(pull_request.id);
-      prElement.classList.add("merging");
-      const response = await ajax(
-        "put",
-        `${githubUrl}/repos/${pull_request.repository.owner.login}/${
-          pull_request.repository.name
-        }/pulls/${pull_request.number}/merge`,
-        JSON.stringify({
-          commit_message: `Merge pull request #${pull_request.number} from ${
-            pull_request.repository.owner.login
-          }/${pull_request.headRefName}
-          ${pull_request.title}`
-        })
-      );
-      console.log(response);
-      prElement.classList.remove("merging");
-      if (response.merged === true) {
-        prElement.classList.add("merge-success");
-        setTimeout(() => {
-          prElement.remove();
-          pull_request.merged = true;
-        }, 3000);
-      } else {
-        prElement.classList.add("merge-fail");
+
+function loadView() {
+  getPullRequestsGraphQL().then(pull_requests => {
+    pull_requests = pull_requests.map(pr => checkMergeability(pr));
+    pull_requests.sort((a, b) => {
+      if (a.mergeable && !b.mergeable) {
+        return -1;
       }
-      await new Promise(resolve => {
-        setTimeout(() => {
-          resolve();
-        }, 5000);
-      });
-    }
-  };
-  document.getElementById("merge-all").addEventListener("click", () => {
-    mergeAll();
+      if (b.mergeable && !a.mergeable) {
+        return 1;
+      }
+      return 0;
+    });
+    buildPRDOM(pull_requests);
+    mergeAll = async () => {
+      for (const pull_request of pull_requests) {
+        if (!pull_request.mergeable || pull_request.merged === true) continue;
+        const prElement = document.getElementById(pull_request.id);
+        prElement.classList.add("merging");
+        const response = await ajax(
+          "put",
+          `${githubUrl}/repos/${pull_request.repository.owner.login}/${
+            pull_request.repository.name
+          }/pulls/${pull_request.number}/merge`,
+          JSON.stringify({
+            commit_message: `Merge pull request #${pull_request.number} from ${
+              pull_request.repository.owner.login
+            }/${pull_request.headRefName}
+          ${pull_request.title}`
+          })
+        );
+        console.log(response);
+        prElement.classList.remove("merging");
+        if (response.merged === true) {
+          prElement.classList.add("merge-success");
+          setTimeout(() => {
+            prElement.remove();
+            pull_request.merged = true;
+          }, 3000);
+        } else {
+          prElement.classList.add("merge-fail");
+        }
+        await new Promise(resolve => {
+          setTimeout(() => {
+            resolve();
+          }, 5000);
+        });
+      }
+    };
+    document.removeEventListener("click", mergeAll);
+    document.getElementById("merge-all").addEventListener("click", mergeAll);
   });
+}
+
+document.addEventListener("viewSwitch", e => {
+  if (e.detail.view === "github") loadView();
 });
