@@ -223,7 +223,7 @@ let mergeAll = () => {};
 prList.innerHTML = null;
 prList.appendChild(new LoadingSpinnerElement().render());
 
-function loadView() {
+function loadGitHubView() {
   getPullRequestsGraphQL().then(pull_requests => {
     pull_requests = pull_requests.map(pr => checkMergeability(pr));
     pull_requests.sort((a, b) => {
@@ -277,5 +277,5 @@ function loadView() {
 }
 
 document.addEventListener("viewSwitch", e => {
-  if (e.detail.view === "github") loadView();
+  if (e.detail.view === "github") loadGitHubView();
 });

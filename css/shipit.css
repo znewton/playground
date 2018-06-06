@@ -1,0 +1,31 @@
+.shipit img:hover {
+  cursor: pointer;
+}
+.shipit .window-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shipit {
+  height: 50rem;
+  width: 60rem;
+}
+
+.window-refresh {
+  position: absolute;
+  right: 1rem;
+}
+.window-refresh::before {
+  content: "Refresh";
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  transition: all 150ms ease;
+}
+.window-refresh:hover::before {
+  border: 1px solid #aaa;
+  background-color: #aaa;
+  cursor: pointer;
+  color: #fefefe;
+}

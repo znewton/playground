@@ -10,6 +10,8 @@
   <link rel="stylesheet" type="text/css" media="screen" href="css/terminal.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="css/tray.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="css/github.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/colors.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/shipit.css" />
   <script src="config.js"></script>
 </head>
 
@@ -22,6 +24,14 @@
     <a id="github-icon" class="tray-icon" href="#github">
       <span class="github-icon"></span>
       <div class="label">GitHub</div>
+    </a>
+    <a id="colors-icon" class="tray-icon" href="#colors">
+      <span class="colors-icon"></span>
+      <div class="label">Colors</div>
+    </a>
+    <a id="shipit-icon" class="tray-icon" href="#shipit">
+      <span class="shipit-icon"></span>
+      <div class="label">Shipit</div>
     </a>
   </section>
   <main>
@@ -52,7 +62,39 @@
         </div>
       </div>
     </div>
+    <div class="colors window" id="colors">
+      <div class="flex flex-column">
+        <div class="flex">
+          <div class="swatch" style="background-color: #F5ca00"></div>
+          <div class="swatch" style="background-color: #e82a2a"></div>
+          <div class="swatch" style="background-color: #59bbe0"></div>
+          <div class="swatch" style="background-color: #000"></div>
+          <div class="swatch" style="background-color: #828282"></div>
+          <div class="swatch" style="background-color: #dcdcdc"></div>
+        </div>
+        <div class="flex">
+          <div class="swatch" style="background-color: #ffb648"></div>
+          <div class="swatch" style="background-color: #d93f4c"></div>
+          <div class="swatch" style="background-color: #5293c7"></div>
+          <div class="swatch" style="background-color: #000"></div>
+          <div class="swatch" style="background-color: #87929d"></div>
+          <div class="swatch" style="background-color: #d8dcde"></div>
+        </div>
+      </div>
+    </div>
+    <div class="shipit window" id="shipit">
+      <div class="window-header">
+        <div class="window-action close"></div>
+        <div class="window-action minimize"></div>
+        <div class="window-action expand"></div>
+        <div class="window-refresh" id="shipit-refresh"></div>
+      </div>
+      <div class="window-body">
+        <img id="sqrl" />
+      </div>
+    </div>
   </main>
+  <script src="js/shipit.js"></script>
   <script src="js/terminal.js"></script>
   <script src="js/github.js"></script>
   <script src="js/main.js"></script>
