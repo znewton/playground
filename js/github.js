@@ -116,7 +116,9 @@ async function ajax(type, url, data) {
 
 function checkMergeability(pr) {
   const commits = pr.commits.edges.map(
-    edge => edge.node.commit.status.contexts
+    edge => edge.node.commit.status ?
+      edge.node.commit.status.contexts
+      : []
   );
   const reviews = pr.reviews.edges.map(edge => edge.node);
   let mergeable = false;
